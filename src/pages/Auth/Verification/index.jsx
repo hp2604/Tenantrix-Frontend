@@ -11,7 +11,7 @@ import Loader from "../../../components/Loader";
 
 
 const Verification = () => {
-  const [timeLeft, setTimeLeft] = useState(10);
+  const [timeLeft, setTimeLeft] = useState(120);
   const [isActive, setIsActive] = useState(true);
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
