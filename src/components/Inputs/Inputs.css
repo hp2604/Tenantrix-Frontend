@@ -1,0 +1,14 @@
+
+.normal{
+    height: 5vh;
+    padding-left: 10%;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    cursor:pointer;
+}
+.error{
+    height: 5vh;
+    padding-left: 10%;
+    border: 1px solid red;
+    border-radius: 50px;
+}

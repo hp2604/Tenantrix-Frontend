@@ -1,0 +1,64 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    background: #67c4f0;
+    background: linear-gradient(90deg, rgba(103, 196, 240, 1) 0%, rgba(237, 237, 237, 1) 100%, rgba(237, 221, 83, 1) 100%);
+}
+/* .card{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid white;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+} */
+/* .title{
+    padding-top: 20px;
+} */
+form{
+    width: 500px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+/* .normal-input{
+    height: 5vh;
+    padding-left: 10%;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+}
+.error-input{
+    height: 5vh;
+    padding-left: 10%;
+    border: 1px solid red;
+    border-radius: 50px;
+} */
+
+.login-link{
+    display: flex;
+    justify-content: center;
+}
+a{
+    text-decoration: none;
+}
+.error-message{
+    color: red;
+}
+
+@media (max-width:768px){
+    /* .sign-card{
+        width: 80%;
+    } */
+    form{
+        width: 100%;
+    }
+    /* button{
+        margin-left: 20%;
+        width: 50%;
+    } */
+}
