@@ -5,20 +5,37 @@ import { SignUpSchema } from "../../../schema";
 import Inputs from "../../../components/Inputs";
 import Button from "../../../components/Button";
 import Card from "../../../components/Card";
+import { signup } from "../../../services/Auth";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import Loader from "../../../components/Loader";
 
 
 const Signup = () => {
-  const {loading,setLoading}=useState(false);
+  const [loading,setLoading]=useState(false);
+  const [error,setError]=useState(null);
+  const navigate=useNavigate();
   const initialValues={
-    FullName:"",
+    name:"",
     email :"",
     password:"",
-    organization:""
+    organizationName:""
   }
 const{values,errors,touched,handleSubmit,handleChange}=  useFormik({
     initialValues:initialValues,
     validationSchema:SignUpSchema,
-    onSubmit :(values ,actions)=>{
+    onSubmit :async(values ,actions)=>{
+      try {
+        setError(null)
+        setLoading(true)
+        const response=await signup(values);
+        const {token}=response.data;
+        setLoading(false)
+        navigate(`/verify?token=${token}`);
+      } catch (error) {
+        setLoading(false);
+        setError(error)
+      }
 
     }
   }) 
@@ -31,17 +48,18 @@ const{values,errors,touched,handleSubmit,handleChange}=  useFormik({
           <h3>Create Your Account</h3>
         </div> */}
         <Card type={"vertical"} title={"Create Account"}>
+          { error && (<p style={{color:"red"}}>{error}</p>)}
            <form onSubmit={handleSubmit}>
             <Inputs
-           name={'FullName'}
+           name={'name'}
            type={'text'}
-           varient={errors.FullName && touched.FullName ? 'error':'normal'}
-           value={values.fullName}
+           varient={errors.name && touched.name ? 'error':'normal'}
+           value={values.name}
            handleChange={handleChange}
            placeholder={"Full Name"}
            
          />
-           { errors.FullName && touched.FullName ? <div className="error-message">{errors.FullName} </div>: null }
+           { errors.name && touched.name ? <div className="error-message">{errors.name} </div>: null }
            <Inputs
            name={'email'}
            type={'email'}
@@ -58,18 +76,24 @@ const{values,errors,touched,handleSubmit,handleChange}=  useFormik({
            varient={ errors.password && touched.password ?'error':'normal' }
            handleChange={handleChange}
            placeholder={"Password"}
+          max={8}
          />
             { errors.password && touched.password ? <div className="error-message">{errors.password} </div>: null }
           <Inputs
-           name={'organization'}
+           name={'organizationName'}
            type={'text'}
-           value={values.organization}
-           varient={ errors.organization && touched.organization?"error": "normal"}
+           value={values.organizationName}
+           varient={ errors.organizationName && touched.organizationName?"error": "normal"}
            handleChange={handleChange}
-           placeholder={"Organization"}
+           placeholder={"organizationName"}
          />
-          { errors.organization && touched.organization ? <div className="error-message">{errors.organization} </div>: null }
-         <Button type={"submit"} text={"Sign Up"}/>
+          { errors.organizationName && touched.organizationName ? <div className="error-message">{errors.organizationName} </div>: null }
+        {
+          loading ?
+           ( <button>  <Loader width={"30"} height={"20"} visible={loading}/></button>) : 
+            <Button type={"submit"} text={"Sign Up"}/> 
+        }
+       
          <div className="login-link">
           <p>Already have  an account ? <a href=""> Login  in</a> </p>
         </div>
@@ -80,15 +104,15 @@ const{values,errors,touched,handleSubmit,handleChange}=  useFormik({
          { /* Name*/ }
          
           {/* <input 
-          className={errors.fullName && touched.fullName?"error-input":"normal-input"}
+          className={errors.name && touched.name?"error-input":"normal-input"}
            type="text"
-           name="fullName" 
+           name="name" 
            placeholder="Full Name"
-           value={values.fullName}
+           value={values.name}
            onChange={handleChange}
            autoComplete="off"
              /> */}
-          {/* { errors.fullName && touched.fullName ? <div className="error-message">{errors.fullName} </div>: null } */}
+          {/* { errors.name && touched.name ? <div className="error-message">{errors.name} </div>: null } */}
           { /* Email */ }
          
           {/* <input 
@@ -115,18 +139,18 @@ const{values,errors,touched,handleSubmit,handleChange}=  useFormik({
           /> */}
             {/* { errors.password && touched.password ? <div className="error-message">{errors.password} </div>: null } */}
 
-          {/* Organization */}
+          {/* organizationName */}
           
           {/* <input 
-          className={errors.organization && touched.organization?"error-input":"normal-input"}
+          className={errors.organizationName && touched.organizationName?"error-input":"normal-input"}
           type="text" 
-          name="organization" 
-          placeholder="Organization"
-          value={values.organization} 
+          name="organizationName" 
+          placeholder="organizationName"
+          value={values.organizationName} 
           onChange={handleChange}
           autoComplete="off"
           /> */}
-            {/* { errors.organization && touched.organization ? <div className="error-message">{errors.organization} </div>: null } */}
+            {/* { errors.organizationName && touched.organizationName ? <div className="error-message">{errors.organizationName} </div>: null } */}
 
           {/* <button 
           type="submit"
