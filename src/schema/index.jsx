@@ -11,3 +11,8 @@ export const SignUpSchema=Yup.object({
 export const Otp=Yup.object({
     otp:Yup.string().max(6).required("OTP required")
 })
+
+export const LoginSchemas=Yup.object({
+    email: Yup.string().email().required("Email Required"),
+    password: Yup.string().min(8).required("Password required")
+})

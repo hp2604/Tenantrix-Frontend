@@ -8,6 +8,7 @@ import { Otp } from "../../../schema";
 import { data, useNavigate, useSearchParams } from "react-router-dom";
 import { resendOtp, verifyOtp } from "../../../services/Auth";
 import Loader from "../../../components/Loader";
+import { removeToken } from "../../../util/Token";
 
 
 const Verification = () => {
@@ -56,7 +57,12 @@ const Verification = () => {
           otp: values.otp,
         });
         setLoading(false);
-        navigate("/dashboard");
+        removeToken('user')
+        setMessage("SignUp SuccessFull  . Redirect to Login Page")
+        setTimeout(()=>{
+           navigate("/login");
+        },5000)
+       
       } catch (error) {
         setLoading(false);
         setError(error);
@@ -66,11 +72,15 @@ const Verification = () => {
 
   const handleResend = async () => {
     try {
-      await resendOtp({ email: user.email });
+     const response= await resendOtp({ email: user.email });
+     console.log(response)
       setMessage("OTP resent successfully");
       setTimeLeft(120);
       setIsActive(true);
     } catch (error) {
+      if(error==="User already verified")
+        setMessage("User already Verified . Redirect to Login Page")
+       { navigate("/login");}
       setError(error);
     }
   };
