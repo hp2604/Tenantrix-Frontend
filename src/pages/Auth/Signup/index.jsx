@@ -9,6 +9,7 @@ import { signup } from "../../../services/Auth";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Loader from "../../../components/Loader";
+import { setToken } from "../../../util/Token";
 
 
 const Signup = () => {
@@ -30,6 +31,7 @@ const{values,errors,touched,handleSubmit,handleChange}=  useFormik({
         setLoading(true)
         const response=await signup(values);
         const {token}=response.data;
+        setToken('user',JSON.stringify(values));
         setLoading(false)
         navigate(`/verify?token=${token}`);
       } catch (error) {
