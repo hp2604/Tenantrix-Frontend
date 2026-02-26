@@ -79,8 +79,11 @@ const Verification = () => {
       setIsActive(true);
     } catch (error) {
       if(error==="User already verified")
-        setMessage("User already Verified . Redirect to Login Page")
-       { navigate("/login");}
+        {  setMessage("User already Verified . Redirect to Login Page")
+          setTimeout(()=>{
+           navigate("/login");
+        },5000)
+       }
       setError(error);
     }
   };
