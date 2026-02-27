@@ -1,16 +1,19 @@
 import React from "react";
-import "./Card.css"
-const Card=({type,title , children})=>{
-    return(
+import "./Card.css";
+const Card = ({ type, title, children }) => {
+  return (
     <>
-    <div className={type }>
-        <div className="title">
-           <h3> {title}</h3> 
-        </div>
+      <div className={type}>
+        {title && (
+          <div className="title">
+            <h3> {title}</h3>
+          </div>
+        )}
+
         {children}
-    </div>
+      </div>
     </>
-    )
-}
+  );
+};
 
 export default Card;

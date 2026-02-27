@@ -3,7 +3,6 @@
     height: 5vh;
     padding-left: 10%;
     border: 1px solid #ccc;
-    border-radius: 50px;
     cursor:pointer;
 }
 .error{
@@ -11,4 +10,10 @@
     padding-left: 10%;
     border: 1px solid red;
     border-radius: 50px;
+}
+@media (max-width:768px){
+   .normal,.error{
+    font-size: 90%;
+    padding-left: 2%;   
+}
 }
