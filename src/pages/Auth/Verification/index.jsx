@@ -20,12 +20,14 @@ const Verification = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [message, setMessage] = useState(null);
+  const[verifytoken,setVerifyToken]=useState("");
 
   useEffect(() => {
     const token = searchParams.get("token");
     if (!token) {
       navigate("/");
     }
+    setVerifyToken(token)
   }, []);
   useEffect(() => {
     if (!isActive) return;
@@ -55,7 +57,7 @@ const Verification = () => {
         const response = await verifyOtp({
           email: user.email,
           otp: values.otp,
-        });
+        },verifytoken);
         setLoading(false);
         removeToken('user')
         setMessage("SignUp SuccessFull  . Redirect to Login Page")
@@ -72,8 +74,7 @@ const Verification = () => {
 
   const handleResend = async () => {
     try {
-     const response= await resendOtp({ email: user.email });
-     console.log(response)
+     const response= await resendOtp({ email: user.email },verifytoken);
       setMessage("OTP resent successfully");
       setTimeLeft(120);
       setIsActive(true);
