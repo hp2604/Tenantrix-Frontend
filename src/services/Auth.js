@@ -1,5 +1,6 @@
 import axios from "axios";
 import { AuthPrefix, BASE_URL } from "../config";
+import axiosInstance from "../util/AxiosInstance";
 
 export const signup = async (data) => {
   try {
@@ -11,16 +12,11 @@ export const signup = async (data) => {
   }
 };
 
-export const verifyOtp = async (data, token) => {
+export const verifyOtp = async (data) => {
   try {
-    const response = await axios.post(
+    const response = await axiosInstance.post(
       `${BASE_URL}${AuthPrefix}verifyOTP`,
-      data,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      },
+      data
     );
     return response;
   } catch (error) {
@@ -30,14 +26,9 @@ export const verifyOtp = async (data, token) => {
 
 export const resendOtp = async (email,token) => {
   try {
-    const response = await axios.post(
+    const response = await axiosInstance.post(
       `${BASE_URL}${AuthPrefix}resendOtp`,
-      email,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      },
+      email
     );
 
     return response;
@@ -55,3 +46,16 @@ export const login = async (data) => {
     throw error.response?.data?.message;
   }
 };
+
+export const verifyToken=async(token)=>{
+  try {
+    const response=await axios.get(`${BASE_URL}${AuthPrefix}verify-token`,   {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      },)
+    return response;
+  } catch (error) {
+    throw error.response?.data?.message;
+  }
+}

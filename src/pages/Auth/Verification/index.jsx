@@ -5,9 +5,9 @@ import Inputs from "../../../components/Inputs";
 import { useFormik } from "formik";
 import { Otp } from "../../../schema";
 import { data, useNavigate, useSearchParams } from "react-router-dom";
-import { resendOtp, verifyOtp } from "../../../services/Auth";
+import { resendOtp, verifyOtp, verifyToken } from "../../../services/Auth";
 import Loader from "../../../components/Loader";
-import { removeToken } from "../../../util/Token";
+import { getToken, removeToken, setToken } from "../../../util/Token";
 import SuccessCard from "../../../components/SuccessCard";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../../store/slice/UserSlice";
@@ -15,32 +15,43 @@ import { SquareCheck } from 'lucide-react';
 import "./Verification.css"
 
 const Verification = () => {
-  const [timeLeft, setTimeLeft] = useState(120);
+  const [timeLeft, setTimeLeft] = useState(60);
   const [isActive, setIsActive] = useState(true);
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user"));
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [verifytoken, setVerifyToken] = useState("");
   const [success, setSuccess] = useState(false);
   const dispatch = useDispatch();
   const[tittle,setTittle]=useState("Verify OTP")
   useEffect(() => {
-    const token = searchParams.get("token");
+    const token =searchParams.get("token") ;
+    const validationToken=async(token)=>{
+      try {
+         const response=await verifyToken(token);
+         const{user}=response.data;
+         setToken(token);
+         localStorage.setItem('user',JSON.stringify(user))
+         if(user.isActive)
+         {
+          navigate("/login")
+         }
+      } catch (error) {
+        navigate("/")
+      }
+    }
+     validationToken(token)
     if (!token) {
       navigate("/");
-    }
-    setVerifyToken(token);
+    } 
   }, []);
   useEffect(() => {
     if (!isActive) return;
-
     if (timeLeft === 0) {
       setIsActive(false);
       return;
     }
-
     const timer = setInterval(() => {
       setTimeLeft((prev) => prev - 1);
     }, 1000);
@@ -63,7 +74,6 @@ const Verification = () => {
             email: user.email,
             otp: values.otp,
           },
-          verifytoken,
         );
         setLoading(false);
         dispatch(setUser(user));
@@ -78,9 +88,9 @@ const Verification = () => {
 
   const handleResend = async () => {
     try {
-      const response = await resendOtp({ email: user.email }, verifytoken);
+      const response = await resendOtp({ email: user.email });
       setMessage("OTP resent successfully");
-      setTimeLeft(120);
+      setTimeLeft(60);
       setIsActive(true);
     } catch (error) {
       setError(error);
