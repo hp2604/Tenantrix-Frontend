@@ -46,7 +46,7 @@ const{values,errors,touched,handleSubmit,handleChange}=  useFormik({
     <div className="container">
         <Card type={"vertical"} title={"Create Account"}>
           { error && (<p style={{color:"red"}}>{error}</p>)}
-           <form onSubmit={handleSubmit}>
+           <form onSubmit={handleSubmit} method="post">
             <Inputs
            name={'name'}
            type={'text'}

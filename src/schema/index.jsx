@@ -16,3 +16,8 @@ export const LoginSchemas=Yup.object({
     email: Yup.string().email().required("Email Required"),
     password: Yup.string().min(8).required("Password required")
 })
+
+export const ResetPassword=Yup.object({
+    password:Yup.string().max(8).required("Password required"),
+    confirmPassword:Yup.string().max(8).required("Confirm Password Required") 
+})

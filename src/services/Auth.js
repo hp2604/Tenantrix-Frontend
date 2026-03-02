@@ -59,3 +59,16 @@ export const verifyToken=async(token)=>{
     throw error.response?.data?.message;
   }
 }
+
+export const resetPassword=async(token,password)=>{
+  try {
+    const response=await axios.patch(`${BASE_URL} ${AuthPrefix}/forget`,password,{
+      headers:{
+        Authorization:`Bearer${token}`
+      }
+    });
+    return response;
+  } catch (error) {
+    throw error.response?.data?.message;
+  }
+}

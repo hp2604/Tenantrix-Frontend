@@ -5,6 +5,7 @@ import Verification from "../pages/Auth/Verification";
 import Login from "../pages/Auth/Login";
 import Dashboard from "../pages/Dashboard";
 import NotFound from "../pages/NotFound";
+import ForgetPassword from "../pages/Auth/ForgetPassword";
 
 const AppRoute=()=>{
     return(
@@ -14,6 +15,7 @@ const AppRoute=()=>{
         <Route path="/login" element={<Login/>}/>
         <Route path="/dashboard" element={<Dashboard/>}/>
         <Route path="/verify" element={<Verification/>}/>
+        <Route path='/forget' element={<ForgetPassword/>}/>
         <Route path="*" element={<NotFound/>}/>
     </Routes>
     </>
