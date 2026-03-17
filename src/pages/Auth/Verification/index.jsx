@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import Button from "../../../components/Button";
-import Card from "../../../components/Card";
-import Inputs from "../../../components/Inputs";
+import Button from "../../../components/BaseComponent/Button";
+import Card from "../../../components/BaseComponent/Modal";
+import Inputs from "../../../components/BaseComponent/Inputs";
 import { useFormik } from "formik";
 import { Otp } from "../../../schema";
 import { data, useNavigate, useSearchParams } from "react-router-dom";
 import { resendOtp, verifyOtp, verifyToken } from "../../../services/Auth";
-import Loader from "../../../components/Loader";
+import Loader from "../../../components/BaseComponent/Loader";
 import { getToken, removeToken, setToken } from "../../../util/Token";
 import SuccessCard from "../../../components/SuccessCard";
 import { useDispatch } from "react-redux";

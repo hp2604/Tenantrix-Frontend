@@ -1,0 +1,19 @@
+:root{
+    --bg-primary:#f6f8fb;
+    --bg-secondary:#eef2ff;
+
+    --button-primary :#5b4bff;
+
+    --border-color : #00000014;
+
+    --sm:6px;
+    --md:8px;
+    --lg:12px;
+    --xg:20px;
+
+    --color-danger:#e02424;
+    --color-waring:#f59e0b;
+    --color-white:#ffffff;
+    --color-black:#252525;
+    --color-primary:#5b4bff;
+}

@@ -1,0 +1,25 @@
+#modal-container{
+    border: 1px solid var( --border-color );
+    border-radius: var(--md);
+    border-top-width: 2px ;
+    border-top-color: var(--color-primary);
+    box-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.04), 0 4px 12px -2px rgba(0, 0, 0, 0.02);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--xg);
+    width:30%;
+    background-color: linear-gradient(145deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);;
+}
+#title{
+    padding-top: var(--xg);
+    font-size: 3px;
+    color: red;
+}
+@media (max-width:768px){
+    .vertical{
+        font-size: 80%;
+        width: 80%;
+        padding: 0%;
+    }
+}

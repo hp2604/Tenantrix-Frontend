@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import "./Signup.css";
 import { useFormik } from "formik";
 import { SignUpSchema } from "../../../schema";
-import Inputs from "../../../components/Inputs";
-import Button from "../../../components/Button";
-import Card from "../../../components/Card";
+import Inputs from "../../../components/BaseComponent/Inputs";
+import Button from "../../../components/BaseComponent/Button";
+import Modal from "../../../components/BaseComponent/Modal";
 import { signup } from "../../../services/Auth";
 import { useNavigate } from "react-router-dom";
-import Loader from "../../../components/Loader";
+import Loader from "../../../components/BaseComponent/Loader";
 import { setToken } from "../../../util/Token";
 
 
@@ -44,7 +44,7 @@ const{values,errors,touched,handleSubmit,handleChange}=  useFormik({
 
   return (
     <div className="container">
-        <Card type={"vertical"} title={"Create Account"}>
+        <Modal  title={"Create Account"}>
           { error && (<p style={{color:"red"}}>{error}</p>)}
            <form onSubmit={handleSubmit}>
             <Inputs
@@ -96,7 +96,7 @@ const{values,errors,touched,handleSubmit,handleChange}=  useFormik({
         </div>
            </form>
 
-        </Card>
+        </Modal>
     </div>
   );
 };

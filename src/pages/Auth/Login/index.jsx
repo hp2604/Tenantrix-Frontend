@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import Card from "../../../components/Card";
-import Inputs from "../../../components/Inputs";
-import Button from "../../../components/Button";
+import Card from "../../../components/BaseComponent/Modal";
+import Inputs from "../../../components/BaseComponent/Inputs";
+import Button from "../../../components/BaseComponent/Button";
 import { useFormik } from "formik";
-import Loader from "../../../components/Loader";
+import Loader from "../../../components/BaseComponent/Loader";
 import { login } from "../../../services/Auth";
 import { LoginSchemas } from "../../../schema";
 import { useDispatch } from "react-redux";

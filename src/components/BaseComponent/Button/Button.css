@@ -1,16 +1,17 @@
 button{
-    background-color: #2b96e2d7;
-    color: white;
+    background-color: var(--button-primary);
+    color: var(--color-white);
     margin-top: 5%;
     height: 5vh;
     border: none;
-    padding: 10px;
+    padding: var(--md);
+    border-radius: 5px;
 }
 @media (max-width:768px){
  button{
        
        width: 50%;
        margin-bottom: 10%;
-       margin: 20px auto;
+       margin: var(--xg) auto;
     }
 }
