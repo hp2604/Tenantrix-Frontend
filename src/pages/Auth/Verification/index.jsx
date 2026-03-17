@@ -25,6 +25,7 @@ const Verification = () => {
   const [success, setSuccess] = useState(false);
   const dispatch = useDispatch();
   const[tittle,setTittle]=useState("Verify OTP")
+  const[message,setMessage]=useState('');
   useEffect(() => {
     const token =searchParams.get("token") ;
     const validationToken=async(token)=>{
@@ -88,8 +89,9 @@ const Verification = () => {
 
   const handleResend = async () => {
     try {
+      setMessage("")
       const response = await resendOtp({ email: user.email });
-      setMessage("OTP resent successfully");
+      setMessage("OTP  successfully");
       setTimeLeft(60);
       setIsActive(true);
     } catch (error) {
@@ -111,6 +113,8 @@ const Verification = () => {
       <div className="container">
         <Card type={"vertical"} title={tittle}>
           {error && <p style={{ color: "red" }}>{error}</p>}
+          {message && <p style={{ color: "green" }}>{message}</p>}
+          { }
           {!success && (
             <form action="" onSubmit={handleSubmit}>
               <Inputs
