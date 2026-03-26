@@ -1,0 +1,27 @@
+.modalContainer{
+    border: 1px solid var(--border-color);
+    border-radius: var(--md);
+    box-shadow: 0 8px 32px -4px rgba(199, 171, 171, 0.04), 0 4px 12px -2px rgba(0, 0, 0, 0.02);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    margin: 0 auto;
+}
+.title{
+    padding-top: var(--xg);
+    font-size: 3px;
+}
+.subtitle{
+    color: var(--color-secondary);
+}
+.content{
+    width:100%
+}
+@media (max-width:768px){
+    .modalContainer{
+        font-size: 80%;
+        width: 80%;
+        padding: 0%;
+    }
+}

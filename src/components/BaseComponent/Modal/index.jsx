@@ -1,24 +1,28 @@
 import React from "react";
-import "./Modal.css";
-const Modal = ({ title, subtitle, children }) => {
+import styles from "./Modal.module.css";
+
+const Modal = ({ title, subtitle, children , width,height}) => {
   return (
     <>
-      <div id="modal-container">
+      <div className={styles.modalContainer} style={{width:`${width}*10%`, height:`${height}vh`}}>
         {title && (
-          <div id="title">
+          <div className="styles.title"  >
             <p> {title}</p>
           </div>
         )}
         {
           subtitle && (
-            <div id="subtitle">
+            <div className={styles.subtitle}>
               <p>{subtitle}</p>
             </div>
 
           )
-        }
-        {children}
+        } 
+        <div className={styles.content}>
+           {children}
+          </div>    
       </div>
+      
     </>
   );
 };

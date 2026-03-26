@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import "./Signup.css";
+// import "./Signup.css";
 import { useFormik } from "formik";
 import { SignUpSchema } from "../../../schema";
 import Inputs from "../../../components/BaseComponent/Inputs";
 import Button from "../../../components/BaseComponent/Button";
 import Modal from "../../../components/BaseComponent/Modal";
-import { signup } from "../../../services/Auth";
+// import { signup } from "../../../services/Auth";
 import { useNavigate } from "react-router-dom";
 import Loader from "../../../components/BaseComponent/Loader";
-import { setToken } from "../../../util/Token";
+
 
 
 const Signup = () => {
@@ -28,7 +28,7 @@ const{values,errors,touched,handleSubmit,handleChange}=  useFormik({
       try {
         setError(null)
         setLoading(true)
-        const response=await signup(values);
+        // const response=await signup(values);
         const {token}=response.data;
         setToken(token);
         setLoading(false)
@@ -43,8 +43,7 @@ const{values,errors,touched,handleSubmit,handleChange}=  useFormik({
 
 
   return (
-    <div className="container">
-        <Modal  title={"Create Account"}>
+        <Modal  title={"Create Account"} width={8} subtitle={'Join the tech'} >
           { error && (<p style={{color:"red"}}>{error}</p>)}
            <form onSubmit={handleSubmit}>
             <Inputs
@@ -97,7 +96,6 @@ const{values,errors,touched,handleSubmit,handleChange}=  useFormik({
            </form>
 
         </Modal>
-    </div>
   );
 };
 

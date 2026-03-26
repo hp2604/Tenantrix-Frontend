@@ -1,19 +1,32 @@
 :root{
-    --bg-primary:#f6f8fb;
+
+    /* Background Properties */
+    --bg-primary:#F0F4F7;
     --bg-secondary:#eef2ff;
+    --bg-white:#ffff;
+    --bg-black:#000000;
 
-    --button-primary :#5b4bff;
 
+    /* Button Proerties */
+    --btn-primary :#5b4bff;
+    --btn-second:#ccc;
+
+    /* Border Propereties*/
     --border-color : #00000014;
 
+
+    /* Font Size */
     --sm:6px;
     --md:8px;
     --lg:12px;
     --xg:20px;
 
+    /* Color Properties */
+    --color-success:#2c9435;
     --color-danger:#e02424;
     --color-waring:#f59e0b;
     --color-white:#ffffff;
     --color-black:#252525;
-    --color-primary:#5b4bff;
+    --color-purple:#5b4bff;
+    --color-secondary:#ccc;
 }
